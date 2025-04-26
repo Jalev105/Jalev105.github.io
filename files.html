@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jalev105</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .file-item {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #ffc107; /* Default icon color */
+            width: 2rem; /* Ensure consistent icon size */
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .file-icon img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .file-details {
+            flex-grow: 1;
+        }
+
+        .file-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-description {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .download-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+        }
+
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Jalev105</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="files.html" class="active">Files</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2>My Files</h2>
+        <div class="file-item">
+            <span class="file-icon"><img src="questionmark.png" alt="PDF Icon"></span>
+            <div class="file-details">
+                <div class="file-name">File1.pdf</div>
+                <div class="file-description">Detailed proposal for the latest web development project.</div>
+            </div>
+            <a href="#" class="download-link" download>Download</a>
+        </div>
+
+        <div class="file-item">
+            <span class="file-icon"><img src="questionmark.png" alt="CSV Icon"></span>
+            <div class="file-details">
+                <div class="file-name">File2.csv</div>
+                <div class="file-description">CSV file containing the monthly website traffic and user engagement data.</div>
+            </div>
+            <a href="#" class="download-link" download>Download</a>
+        </div>
+
+        <div class="file-item">
+            <span class="file-icon"><img src="questionmark.png" alt="ZIP Icon"></span>
+            <div class="file-details">
+                <div class="file-name">File3.zip</div>
+                <div class="file-description">ZIP archive containing the latest UI mockups in Figma and Sketch formats.</div>
+            </div>
+            <a href="#" class="download-link" download>Download</a>
+        </div>
+
+        </main>
+
+    <footer>
+        &copy; 2025 Jalev105
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
