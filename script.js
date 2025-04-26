@@ -4,13 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const skillsGraphContainer = document.querySelector('.skills-graph');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    const heroContent = document.querySelector('.hero-content');
+    const heroContent = document.querySelector('.hero-content'); // Select the hero content
 
-    // --- Initial Hero Content Fade-In ---
+    // --- Initial Hero Content Fade-In (JavaScript Controlled) ---
     if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transition = 'opacity 1s ease-in-out 0.5s';
         setTimeout(() => {
-            heroContent.classList.add('fade-in');
-        }, 100); // Small delay to ensure the class is applied after rendering
+            heroContent.style.opacity = '1';
+        }, 100);
     }
 
     // --- Header Reveal/Hide on Scroll ---
@@ -34,19 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Section Reveal on Scroll ---
+    // --- Section Reveal on Scroll (Direct Style Manipulation) ---
     const revealSection = (entries, observer) => {
         entries.forEach(entry => {
+            console.log('Section:', entry.target.id, 'isIntersecting:', entry.isIntersecting);
             if (entry.isIntersecting) {
-                entry.target.classList.add('reveal');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
                 observer.unobserve(entry.target);
             }
         });
     };
 
-    const sectionObserver = new IntersectionObserver(revealSection, { threshold: 0.15 });
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        threshold: 0.15,
+        root: null,
+        rootMargin: '0px 0px 0px 0px'
+    });
 
     sections.forEach(section => {
+        section.style.opacity = '0'; // Set initial opacity via JS
+        section.style.transform = 'translateY(50px)'; // Set initial transform via JS
+        section.style.transition = 'opacity 1s ease 0.5s, transform 1s ease 0.5s'; // Set transition via JS
         sectionObserver.observe(section);
     });
 
