@@ -1,3 +1,4 @@
+/* CSS Reset to Minimize Unexpected Styles */
 *,
 *::before,
 *::after {
@@ -188,6 +189,12 @@ nav ul li a:hover {
     max-width: 800px;
     margin: 0 auto;
     width: 100%; /* Ensure content respects parent width */
+    opacity: 0; /* Initially hidden for fade-in */
+}
+
+.hero-content.fade-in {
+    opacity: 1; /* Fade in */
+    transition: opacity 1s ease-in-out 0.5s; /* Fade-in animation */
 }
 
 .hero h1 {
@@ -398,4 +405,5 @@ footer {
     font-size: 1rem;
     font-weight: bold;
     width: 100%; /* Ensure full width */
+    margin-top: 30px;
 }
