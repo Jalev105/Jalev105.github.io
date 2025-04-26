@@ -224,15 +224,15 @@ nav ul li a:hover {
     padding: 6rem 2rem;
     text-align: center;
     background-color: #f9f9f9;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Initially moved down further */
+    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s; /* Longer duration and delay */
     width: 100%; /* Ensure sections take full width */
 }
 
 .reveal {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Slide up to original position */
 }
 
 .about h2 {
