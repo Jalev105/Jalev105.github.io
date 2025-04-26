@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const skillsGraphContainer = document.querySelector('.skills-graph');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const heroContent = document.querySelector('.hero-content');
+
+    // --- Initial Hero Content Fade-In ---
+    if (heroContent) {
+        setTimeout(() => {
+            heroContent.classList.add('fade-in');
+        }, 100); // Small delay to ensure the class is applied after rendering
+    }
 
     // --- Header Reveal/Hide on Scroll ---
     let lastScrollTop = 0;
