@@ -182,20 +182,49 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    width: 100%; /* Ensure hero takes full width */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 250%;
+    height: 250%;
+    background-image: radial-gradient(circle, rgba(255, 250, 100, 0.3) 10%, transparent 50%),
+                      radial-gradient(circle, rgba(255, 90, 0, 0.3) 30%, transparent 80%);
+    background-size: 30% 30%;
+    animation: continuousWave 10s linear infinite; /* Changed animation name */
+    opacity: 1;
+}
+
+@keyframes continuousWave {
+    0% {
+        background-position: 0 0, 100% 100%;
+    }
+    100% {
+        background-position: 100% 0, 0 100%;
+    }
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    width: 100%; /* Ensure content respects parent width */
-    opacity: 0; /* Initially hidden for fade-in */
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out 0.5s;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content.fade-in {
-    opacity: 1; /* Fade in */
-    transition: opacity 1s ease-in-out 0.5s; /* Fade-in animation */
+    opacity: 1;
 }
+
+/* ... rest of your CSS ... */
 
 .hero h1 {
     font-size: 3.5rem;
@@ -231,15 +260,7 @@ nav ul li a:hover {
     padding: 6rem 2rem;
     text-align: center;
     background-color: #f9f9f9;
-    opacity: 0; /* Initially hidden */
-    transform: translateY(50px); /* Initially moved down further */
-    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s; /* Longer duration and delay */
-    width: 100%; /* Ensure sections take full width */
-}
-
-.reveal {
-    opacity: 1; /* Fade in */
-    transform: translateY(0); /* Slide up to original position */
+    width: 100%;
 }
 
 .about h2 {
