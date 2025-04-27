@@ -13,7 +13,7 @@ body {
     color: #333;
     line-height: 1.6;
     overflow-x: hidden; /* Prevent horizontal scrollbar */
-    width: 100vw; /* Ensure body takes full viewport width */
+    /* Removed width: 100vw; - generally not needed with overflow-x: hidden and proper box-sizing */
 }
 
 strong {
@@ -33,7 +33,7 @@ header {
     transition: transform 0.3s ease-in-out;
 }
 
-nav {
+nav { /* Combined header nav styles here */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,15 +43,7 @@ nav {
     margin: 0 auto; /* Center the nav if max-width is set */
 }
 
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+/* Removed redundant header nav selector */
 
 .logo a {
     font-size: 1.75rem;
@@ -102,17 +94,20 @@ header nav {
     color: #ff9800;
 }
 
-/* Styles for smaller screens */
+/* Styles for smaller screens (Mobile Nav) */
 @media (max-width: 768px) {
+    /* Keep existing mobile nav styles */
     .nav-menu {
         position: fixed;
         left: -100%; /* Initially hidden off-screen */
-        top: 70px; /* Adjust based on header height */
+        top: 60px; /* Adjusted slightly in case header padding changes */
         background-color: #333;
         width: 100%;
         text-align: center;
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
+        height: calc(100vh - 60px); /* Optional: make menu full height */
+        padding-top: 2rem; /* Add some padding */
     }
 
     .nav-menu ul {
@@ -145,39 +140,19 @@ header nav {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
     }
+
+    nav { /* Reduce nav padding on small screens */
+        padding: 0 1rem;
+    }
 }
 
-.logo {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #ffc107;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 2rem;
-}
-
-nav ul li a {
-    color: #f8f9fa;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #ff9800;
-}
+/* Removed redundant .logo, nav ul, etc. styles already defined above */
 
 .hero {
     background: linear-gradient(135deg, #ffeb3b, #ff9800);
     color: #fff;
     text-align: center;
-    padding: 8rem 2rem;
+    padding: 8rem 1rem; /* Reduced side padding */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,16 +199,14 @@ nav ul li a:hover {
     opacity: 1;
 }
 
-/* ... rest of your CSS ... */
-
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 2.8rem; /* Slightly smaller on mobile */
     margin-bottom: 1.5rem;
     font-weight: 700;
 }
 
 .hero p {
-    font-size: 1.4rem;
+    font-size: 1.2rem; /* Slightly smaller on mobile */
     margin-bottom: 2.5rem;
 }
 
@@ -241,61 +214,101 @@ nav ul li a:hover {
     display: inline-block;
     background-color: #333;
     color: #fff;
-    padding: 1.2rem 2.5rem;
+    padding: 1rem 2rem; /* Slightly smaller padding */
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Slightly smaller font */
 }
 
 .button:hover {
     background-color: #555;
 }
 
+/* Base Section Styles */
 .about,
 .projects,
 .skills,
 .contact {
-    padding: 6rem 2rem;
+    padding: 4rem 1rem; /* Default padding for smaller screens */
     text-align: center;
     background-color: #f9f9f9;
     width: 100%;
 }
 
-.about h2 {
-    font-size: 2.5rem;
-    color: #ffc107;
+/* Larger screen section padding */
+@media (min-width: 769px) {
+    .about,
+    .projects,
+    .skills,
+    .contact {
+        padding: 6rem 2rem; /* Restore larger padding for bigger screens */
+    }
+}
+
+
+.about h2,
+.projects h2,
+.skills h2,
+.contact h2 {
+    font-size: 2rem; /* Base size for mobile */
     margin-bottom: 1.5rem;
     font-weight: bold;
 }
+
+/* Larger screen heading sizes */
+@media (min-width: 769px) {
+    .about h2,
+    .projects h2,
+    .skills h2,
+    .contact h2 {
+        font-size: 2.5rem; /* Restore larger size */
+        margin-bottom: 2rem; /* Restore larger margin */
+    }
+}
+
+
+.about h2 { color: #ffc107; }
+.projects h2 { color: #ff9800; }
+.skills h2 { color: #ffc107; }
+.contact h2 { color: #ffc107; }
 
 .projects {
     background-color: #e9ecef;
 }
 
-.projects h2 {
-    font-size: 2.5rem;
-    color: #ff9800;
-    text-align: center;
-    margin-bottom: 2.5rem;
-    font-weight: bold;
-}
-
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2.5rem;
+    /* Default for mobile: Single column basically */
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* Reduced gap for mobile */
     max-width: 1200px; /* Limit width */
     margin: 0 auto; /* Center the grid */
     width: 100%; /* Ensure it respects max-width */
-    padding: 0 2rem; /* Add some side padding */
+    padding: 0; /* Removed padding, rely on section padding */
 }
+
+/* Added/Modified: Project grid for larger screens */
+@media (min-width: 500px) { /* Adjust breakpoint as needed */
+    .project-grid {
+        /* Starts fitting more columns when space allows */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Reduced minmax */
+        gap: 2rem; /* Slightly larger gap */
+    }
+}
+@media (min-width: 992px) { /* Further adjustment for large screens */
+    .project-grid {
+         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly larger minmax */
+         gap: 2.5rem; /* Restore original gap */
+    }
+}
+
 
 .project-card {
     background-color: #fff;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 1.5rem; /* Slightly reduced padding */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -303,25 +316,26 @@ nav ul li a:hover {
 .project-card h3 {
     color: #333;
     margin-bottom: 0.75rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Slightly reduced */
     font-weight: bold;
 }
 
 .project-card p {
     color: #6c757d;
     margin-bottom: 1.25rem;
+    font-size: 0.95rem; /* Slightly reduced */
 }
 
 .project-card a {
     display: inline-block;
     background-color: #ffc107;
     color: #333;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem; /* Slightly reduced */
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Slightly reduced */
 }
 
 .project-card a:hover {
@@ -330,51 +344,42 @@ nav ul li a:hover {
 
 .skills {
     background-color: #f9f9f9;
-    text-align: center; /* Center the heading */
-    width: 100%; /* Ensure full width */
+    text-align: center;
+    width: 100%;
 }
 
-.skills h2 {
-    font-size: 2.5rem;
-    color: #ffc107;
-    margin-bottom: 2.5rem;
-    font-weight: bold;
-}
+/* Removed skills h2 as it's covered by the general section h2 styling */
 
 .skills-graph {
     max-width: 600px;
-    margin: 2rem auto; /* Center the container by default */
-    padding: 1rem;
+    margin: 1rem auto; /* Reduced top/bottom margin slightly */
+    /* Removed padding: 1rem; Rely on section padding */
     width: 100%; /* Ensure it respects max-width */
-    text-align: left; /* Align SVG content to the left on larger screens */
+    display: flex;      /* Added: Use flexbox to center content */
+    justify-content: center; /* Added: Center flex items (the SVG) */
+    align-items: center; /* Added: Vertically align if needed */
 }
 
-/* Center the SVG content on smaller screens */
-@media (max-width: 767px) {
-    .skills-graph {
-        display: flex;
-        justify-content: center;
-        text-align: center; /* Center text within the SVG if needed */
-    }
+/* Removed the specific media query for skills-graph centering as it's now default */
+/* Ensure the SVG inside .skills-graph can scale */
+.skills-graph svg {
+    max-width: 100%; /* Allow SVG to shrink */
+    height: auto;    /* Maintain aspect ratio */
 }
+
 
 .contact {
     background-color: #343a40;
     color: #fff;
     text-align: center;
-    width: 100%; /* Ensure full width */
+    width: 100%;
 }
 
-.contact h2 {
-    font-size: 2.5rem;
-    color: #ffc107;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-}
+/* Removed contact h2 styling - covered by general section h2 */
 
 .contact p {
-    margin-bottom: 2.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 2rem; /* Adjusted margin */
+    font-size: 1rem; /* Adjusted size */
 }
 
 .contact form {
@@ -382,33 +387,33 @@ nav ul li a:hover {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem; /* Reduced gap */
     width: 100%; /* Ensure it respects max-width */
-    padding: 0 2rem; /* Add side padding for smaller screens */
+    /* Removed padding: 0 2rem; - Rely on section padding */
 }
 
 .contact input[type="text"],
 .contact input[type="email"],
 .contact textarea {
-    padding: 1rem;
+    padding: 0.8rem; /* Reduced padding */
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Adjusted size */
     color: #333;
 }
 
 .contact textarea {
     resize: vertical;
-    min-height: 150px;
+    min-height: 120px; /* Reduced height */
 }
 
 .contact button[type="submit"] {
     background-color: #ff9800;
     color: #fff;
-    padding: 1.2rem 2.5rem;
+    padding: 1rem 2rem; /* Adjusted padding */
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Adjusted size */
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -422,9 +427,76 @@ footer {
     background-color: #212529;
     color: #f8f9fa;
     text-align: center;
-    padding: 1.5rem 0;
-    font-size: 1rem;
+    padding: 1.5rem 1rem; /* Added side padding */
+    font-size: 0.9rem; /* Slightly smaller */
     font-weight: bold;
-    width: 100%; /* Ensure full width */
-    margin-top: 30px;
+    width: 100%;
+    margin-top: 2rem; /* Adjusted margin */
+}
+
+.download-grid {
+    display: flex;
+    flex-direction: column; /* Stack the boxes vertically */
+    gap: 1.5rem; /* Adjust vertical spacing between boxes */
+    max-width: 1200px; /* Keep a maximum width for readability on large screens */
+    margin: 2rem auto; /* Center the grid */
+    padding: 0 2rem;
+}
+
+.download-box {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center; /* Vertically align icon, text, and button */
+    justify-content: space-between; /* Space out icon/text and button */
+}
+
+.download-box-left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allow text to take up available space */
+}
+
+.download-box img {
+    width: 60px; /* Adjust icon size */
+    height: 60px;
+    object-fit: contain;
+    margin-right: 1.5rem; /* Space between icon and text */
+}
+
+.download-box-text {
+    text-align: left; /* Align text to the left within its container */
+}
+
+.download-box h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.25rem; /* Less space between title and description */
+    font-weight: bold;
+    text-align: left; /* Left-align the title */
+}
+
+.download-box p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-align: left; /* Left-align the description */
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #ffc107;
+    color: #333;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.download-button:hover {
+    background-color: #e0a800;
 }
